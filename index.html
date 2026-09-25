@@ -688,7 +688,6 @@
             </div>
         </div>
         <div class="controls">
-            <button class="btn btn-disguise" id="disguiseToggleBtn" onclick="toggleAcademicDisguise()">📖 Academic Disguise</button>
             <button class="btn btn-primary" onclick="openModal()">➕ Add Resource</button>
             <button class="btn" onclick="openActiveInAboutBlank()">↗️ Open in Tab</button>
             <button class="btn" onclick="reloadGame()">🔄 Reload</button>
@@ -717,6 +716,13 @@
                 </div>
 
                 <div class="features-grid">
+                    <div class="feature-card">
+                        <div>
+                            <h3>📖 User Guide</h3>
+                            <p>Access our comprehensive Google Docs guide for step-by-step instructions, troubleshooting tips, and documentation.</p>
+                        </div>
+                        <a href="https://docs.google.com/document/d/1vykPfsY_HHSIg_VQGz1a_KXtaSMOSf3P-Bby-RPWa08/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:14px; width:100%; justify-content:center; text-decoration:none;">📄 Open Documentation</a>
+                    </div>
                     <div class="feature-card">
                         <div>
                             <h3>📋 URL Directory</h3>
@@ -1846,6 +1852,13 @@
             inflateCatalogOptions();
             populateDirectory();
         })();
+
+        // Prevent accidental closing or navigating away from the page
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = '';
+            return '';
+        });
     </script>
 </body>
 </html>
