@@ -688,6 +688,7 @@
             </div>
         </div>
         <div class="controls">
+            <button class="btn" onclick="openChangelogModal()">📢 Changelog</button>
             <button class="btn btn-primary" onclick="openModal()">➕ Add Resource</button>
             <button class="btn" onclick="openActiveInAboutBlank()">↗️ Open in Tab</button>
             <button class="btn" onclick="reloadGame()">🔄 Reload</button>
@@ -874,6 +875,31 @@
         <div id="iframe-wrapper"></div>
     </div>
 
+    <div id="changelogModal" class="modal-overlay active" onclick="if(event.target === this) closeChangelogModal();">
+        <div class="modal" style="max-width: 520px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h2 style="margin-bottom: 0;">📢 Changelog</h2>
+                <button class="btn" onclick="closeChangelogModal()" style="padding: 4px 10px; font-size: 0.8rem;">✕</button>
+            </div>
+            <div style="text-align: left; margin-bottom: 20px;">
+                <ul style="list-style-type: none; padding-left: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.92rem; color: var(--text-dark);">
+                    <li style="background: rgba(255,255,255,0.65); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--glass-border); line-height: 1.4;">
+                        <strong>📄 User Guide Added:</strong> User guide added with links to <strong>Fern</strong> and <strong>Opium</strong> on the home page.
+                    </li>
+                    <li style="background: rgba(255,255,255,0.65); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--glass-border); line-height: 1.4;">
+                        <strong>🍕 Papa Louis 2 Updated:</strong> The Papa Louis 2 link has been changed to a new active mirror URL.
+                    </li>
+                    <li style="background: rgba(255,255,255,0.65); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--glass-border); line-height: 1.4;">
+                        <strong>🍕 Papa Louis 4 Added:</strong> Papa Louis 4 has been added to the arcade catalog.
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="closeChangelogModal()">Got it!</button>
+            </div>
+        </div>
+    </div>
+
     <div id="addModal" class="modal-overlay" onclick="if(event.target === this) closeModal();">
         <div class="modal">
             <h2>Add a New Site / Local Game</h2>
@@ -1014,8 +1040,9 @@
                     { name: "Papa's Bakeria", url: "https://archive.org/embed/papasbakeria_sdk_coolmath" },
                     { name: "Jacksmith", url: "https://archive.org/embed/jacksmith-14015_202012" },
                     { name: "Papa Louis 1", url: "https://algebra-skills-us.github.io/Browser/" },
-                    { name: "Papa Louis 2", url: "https://storage.googleapis.com/gclassroom/index.html" },
-                    { name: "Papa Louis 3", url: "https://dhvniignsp0pw.cloudfront.net/" }
+                    { name: "Papa Louis 2", url: "https://quizizz.com/_media/opium.best/45146cd9-3380-4119-85cf-66f3abf739a3-v2" },
+                    { name: "Papa Louis 3", url: "https://dhvniignsp0pw.cloudfront.net/" },
+                    { name: "Papa Louis 4", url: "https://eo1x.s3.us-east-1.amazonaws.com/index.html" }
                 ]
             }
         ];
@@ -1605,6 +1632,16 @@
             document.getElementById('siteUrl').value = '';
             document.getElementById('modalFileSelectedLabel').textContent = '';
             pendingModalBlobUrl = '';
+        }
+
+        function openChangelogModal() {
+            const modal = document.getElementById('changelogModal');
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeChangelogModal() {
+            const modal = document.getElementById('changelogModal');
+            if (modal) modal.classList.remove('active');
         }
 
         function addSiteFromInput() {
